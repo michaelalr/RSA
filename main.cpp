@@ -267,7 +267,9 @@ void testSignVerify(ULONG key_size, LPCWSTR sign_hash)
     }
 }
 
-
+/**
+ * The test measures BCrypt API RSA Key Gen and Sign operations.
+ */
 int main()
 {
     //RSA key size: 2048, 4096
@@ -277,7 +279,7 @@ int main()
     LPCWSTR sign_hash = BCRYPT_SHA1_ALGORITHM;
 
     //choose how many loops:
-    int num = 1;
+    int num = 10;
     auto sum = 0;
     for (int i = 0; i < num; i++)
     {
