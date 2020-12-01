@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <iostream>
 #include <bcrypt.h>
+#include <chrono>
 
 #define NT_SUCCESS(Status)          (((NTSTATUS)(Status)) >= 0)
 #define STATUS_UNSUCCESSFUL         ((NTSTATUS)0xC0000001L)
@@ -11,6 +12,7 @@ static const BYTE input1[] = { 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x20,
 //input2 = "Have a nice day":
 static const BYTE input2[] = { 0x48, 0x61, 0x76, 0x65, 0x20, 0x61, 0x20, 0x6e,
                               0x69, 0x63, 0x65, 0x20, 0x64, 0x61, 0x79 };
+
 
 void printFromMemory(void* Mem, int len)
 {
@@ -274,7 +276,19 @@ int main()
     //sign hash options: BCRYPT_SHA1_ALGORITHM, BCRYPT_SHA256_ALGORITHM
     LPCWSTR sign_hash = BCRYPT_SHA1_ALGORITHM;
 
-    testSignVerify(key_size, sign_hash);
+    //choose how many loops:
+    int num = 1;
+    auto sum = 0;
+    for (int i = 0; i < num; i++)
+    {
+        auto start = std::chrono::steady_clock::now();
+        testSignVerify(key_size, sign_hash);
+        auto end = std::chrono::steady_clock::now();
+        auto diff = end - start;
+        sum += (diff).count();
+    }
+
+    std::cout << "the average time of hey gen and sign operations is " << sum / num << " ms" << std::endl;
 
     return 0;
 }
