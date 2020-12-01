@@ -288,7 +288,7 @@ int main()
         sum += (diff).count();
     }
 
-    std::cout << "the average time of hey gen and sign operations is " << sum / num << " ms" << std::endl;
+    std::cout << "the average time of key gen and sign operations is " << sum / num << " ms" << std::endl;
 
     return 0;
 }
