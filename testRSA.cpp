@@ -261,7 +261,7 @@ int stringToint(char* s, int &num)
  * 1. RSA key size: 2048 or 4096
  * 2. sign hash options: 1 or 256 (for BCRYPT_SHA1_ALGORITHM or BCRYPT_SHA256_ALGORITHM)
  * if you want to verify: 3. input1 
- *						  4. input2
+ *                        4. input2
  * if want to test performance: 3. int number of loops.
  * pay attention that if you choose 1 in sign hash, the inputs length has to be 20,
  * and if you choose 256 in sign hash, the inputs length has to be 32.
