@@ -1,8 +1,12 @@
 #include <Windows.h>
 #include <iostream>
+#include <bcrypt.h>
 #include <bitset>
 #include <string>
 #include <chrono>
+#include <climits>
+
+#pragma comment (lib, "bcrypt.lib")
 
 #ifndef NT_SUCCESS
 #define NT_SUCCESS(Status) ((NTSTATUS)(Status) >= 0)
